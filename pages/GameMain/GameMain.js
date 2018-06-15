@@ -5,25 +5,13 @@
 * @Author: H3ric Young
 * @Date:   2018-01-04 16:57:30
 * @Last Modified by:   H3ric Young
-* @Last Modified time: 2018-01-11 10:47:18
+* @Last Modified time: 2018-06-15 17:52:45
 */
 import * as echarts from '../../ec-canvas/echarts';
 
 var util = require('../../utils/util.js');  //引入获取格式化系统时间的模块
-
-Page({
-
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    ec: {
-      lazyLoad:true,
-    },
-    value_name_array: [['赢', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], ['赢', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], ['赢', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], ['赢', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]],
-    current_value_array: [0, 0, 0,0],
-    key_value_Array: [
-        [
+var value_name_item = ['赢', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+var key_value_item = [
             { id: 0,name: '赢'},
             { id: 1,  name: 1 },
             { id: 2, name: 2 },
@@ -39,58 +27,24 @@ Page({
             { id: 11, name: 11 },
             {id: 12, name: 12},
             { id: 13, name: 13 },
-        ],
-        [
-            { id: 0, name: '赢' },
-            { id: 1, name: 1 },
-            { id: 2, name: 2 },
-            { id: 3, name: 3 },
-            { id: 4, name: 4 },
-            { id: 5, name: 5 },
-            { id: 6, name: 6 },
-            { id: 7, name: 7 },
-            { id: 8, name: 8 },
-            { id: 8, name: 9 },
-            { id: 9, name: 10 },
-            { id: 10, name: 11 },
-            { id: 11, name: 11 },
-            { id: 12, name: 12 },
-            { id: 13, name: 13 },
-        ],
-        [
-            { id: 0, name: '赢' },
-            { id: 1, name: 1 },
-            { id: 2, name: 2 },
-            { id: 3, name: 3 },
-            { id: 4, name: 4 },
-            { id: 5, name: 5 },
-            { id: 6, name: 6 },
-            { id: 7, name: 7 },
-            { id: 8, name: 8 },
-            { id: 8, name: 9 },
-            { id: 9, name: 10 },
-            { id: 10, name: 11 },
-            { id: 11, name: 11 },
-            { id: 12, name: 12 },
-            { id: 13, name: 13 },
-        ],
-        [
-            { id: 0, name: '赢' },
-            { id: 1, name: 1 },
-            { id: 2, name: 2 },
-            { id: 3, name: 3 },
-            { id: 4, name: 4 },
-            { id: 5, name: 5 },
-            { id: 6, name: 6 },
-            { id: 7, name: 7 },
-            { id: 8, name: 8 },
-            { id: 8, name: 9 },
-            { id: 9, name: 10 },
-            { id: 10, name: 11 },
-            { id: 11, name: 11 },
-            { id: 12, name: 12 },
-            { id: 13, name: 13 },
-        ],
+        ];
+
+Page({
+
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    ec: {//echarts图表的配置
+      lazyLoad:true,
+    },
+
+    value_name_array: [value_name_item,value_name_item,value_name_item,value_name_item],//数字拨盘的显示值
+
+    current_value_array: [0, 0, 0,0],//数字拨盘当前选中的值的id
+
+    key_value_Array: [//数字拨盘的显示值的键值对
+      key_value_item,key_value_item,key_value_item,key_value_item
     ],
     players_name: [],              //玩家姓名列表
     createtime: "",                 //该牌局创建时间
@@ -100,11 +54,11 @@ Page({
     round_addition:[],               //每轮每人添加的牌数（已经过倍数换算）
     isOver:false,                    //该局是否结束
     touch_bottom_tip:"",  //上拉提示信息
-    bar_icon_url:"../../icon/bar_chart_active.png",
-    line_icon_url:"../../icon/line_chart.png",
-    isBarDisplay:"block",
-    isLineDisplay:"none",
-    last_round_view:"round_0",
+    bar_icon_url:"../../icon/bar_chart_active.png",//切换到柱状图的按钮图标url
+    line_icon_url:"../../icon/line_chart.png",//切换到折线图的按钮图标url
+    isBarDisplay:"block",//柱状图显示的状态
+    isLineDisplay:"none",//折线图显示的状态
+    last_round_view:"round_0",//最新一局详细数据的容器view的id
   },
 
   /**
@@ -300,7 +254,12 @@ Page({
   },
 
   /**
-   * 初始化echarts图表
+   * [echarts_init 初始化echarts图表并进行重新渲染]
+   * @author Heric
+   * @date   2018-06-15
+   *
+   * @access [access]
+   * @return {[type]}   [description]
    */
   echarts_init: function () {
     var that = this;
@@ -392,6 +351,7 @@ Page({
           that.setData({"isOver":isOver});
           that.echarts_init();
 
+          //更新当前最新局数据的view的id，使滚动条自动移动到最新一局数据的位置
           var last_round_view = "round_";
           var last_round_num = that.data.game_data.length - 1;
           last_round_view += last_round_num;
@@ -435,7 +395,7 @@ Page({
   },
 
   /**
-   * [newGame 在当前玩家下开始新牌局]
+   * [newGame 在当前玩家不变的情况下开始新牌局]
    * @author Heric
    * @date   2018-01-10
    *
@@ -538,12 +498,30 @@ Page({
       complete: function(res) {},
     })
   },
+
+  /**
+   * [changeBar 显示柱状图]
+   * @author Heric
+   * @date   2018-06-15
+   *
+   * @access [access]
+   * @return {[type]}   [description]
+   */
   changeBar:function(){
     this.setData({'bar_icon_url':"../../icon/bar_chart_active.png"});
     this.setData({ 'line_icon_url': "../../icon/line_chart.png" });
     this.setData({'isBarDisplay':'block'});
     this.setData({ 'isLineDisplay': 'none' });
   },
+
+  /**
+   * [changeLine 显示折线图]
+   * @author Heric
+   * @date   2018-06-15
+   *
+   * @access [access]
+   * @return {[type]}   [description]
+   */
   changeLine:function(){
     this.setData({ 'line_icon_url': "../../icon/line_chart_active.png" });
     this.setData({ 'bar_icon_url': "../../icon/bar_chart.png" });
@@ -646,22 +624,26 @@ Page({
       this.setData({current_value_array:[0, 0, 0, 0]});
 
       //判断每人当前累计剩余牌数，若存在超过或等于100的情况，将该局的状态改为结束
-      var loser;
+      var loser = [];
       for (var num in current_sum) {
           if (current_sum[num] >= 100) {
               isOver = true;
               switch(num){
-                case '0':loser = this.data.players_name[0];break;
-                case '1': loser = this.data.players_name[1]; break;
-                case '2': loser = this.data.players_name[2]; break;
-                default: loser = this.data.players_name[3]; 
+                case '0':loser.push(this.data.players_name[0]);break;
+                case '1': loser.push(this.data.players_name[1]); break;
+                case '2': loser.push(this.data.players_name[2]); break;
+                default: loser.push(this.data.players_name[3]); 
               }
-              break;
           }
       }
       this.setData({ "isOver": isOver });
       var endTip = "该局结束,";
-      endTip += loser;
+      for(var num in loser){
+        if(num == 0)
+            endTip += loser[num];
+        else
+            endTip += "、"+loser[num];
+      }
       endTip += "累计剩余牌数已破百。"
 
       if (isOver) {
@@ -689,7 +671,14 @@ Page({
 })
 
 /**
- * 
+ * [setOption 配置echarts折线图的数据和相关配置]
+ * @author Heric
+ * @date   2018-06-15
+ *
+ * @access [access]
+ * @param  {[type]}   chart     [description]
+ * @param  {[type]}   names     [description]
+ * @param  {[type]}   game_data [description]
  */
 function setOption(chart, names, game_data) {
   var player1_data = [0], player2_data = [0], player3_data = [0], player4_data = [0], round_num = [0];

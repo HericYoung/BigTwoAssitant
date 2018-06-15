@@ -5,7 +5,7 @@
 * @Author: H3ric Young
 * @Date:   2018-01-4 14:30:02
 * @Last Modified by:   H3ric Young
-* @Last Modified time: 2018-01-10 15:25:22
+* @Last Modified time: 2018-06-15 17:29:41
 */
 
 /**
@@ -18,7 +18,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    version:"v0.53",
+    version:"v0.55",
     createtime: "",   //旧牌局（若存在）的创建时间
   },
 
@@ -165,6 +165,15 @@ Page({
       })
     }
   },
+
+  /**
+   * [showInfo 以弹窗形式显示小程序介绍]
+   * @author Heric
+   * @date   2018-06-15
+   *
+   * @access [access]
+   * @return {[type]}   [description]
+   */
   showInfo:function(){
       wx.showModal({
           title: '提示',

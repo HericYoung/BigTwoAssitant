@@ -5,7 +5,7 @@
 * @Author: H3ric Young
 * @Date:   2018-01-04 16:56:08
 * @Last Modified by:   H3ric Young
-* @Last Modified time: 2018-01-10 16:04:18
+* @Last Modified time: 2018-06-15 17:39:22
 */
 
 //引入获取格式化系统时间的模块
@@ -20,14 +20,14 @@ Page({
     createtime:"",            //该牌局创建时间
     game_data:[],             //该局游戏的详细数据
     current_sum:[0,0,0,0],    //当前每人的累计剩余牌数
-    input1BgAnimation:{},  //玩家1姓名输入框的动画配置数据
-    input2BgAnimation: {}, //玩家2姓名输入框的动画配置数据
-    input3BgAnimation: {}, //玩家3姓名输入框的动画配置数据
-    input4BgAnimation: {}, //玩家4姓名输入框的动画配置数据
-    input1InputAnimation: {},
-    input2InputAnimation: {},
-    input3InputAnimation: {},
-    input4InputAnimation: {}
+    input1BgAnimation:{},  //玩家1姓名输入框背景的动画配置数据
+    input2BgAnimation: {}, //玩家2姓名输入框背景的动画配置数据
+    input3BgAnimation: {}, //玩家3姓名输入框背景的动画配置数据
+    input4BgAnimation: {}, //玩家4姓名输入框背景的动画配置数据
+    input1InputAnimation: {},//玩家1姓名输入框placeholder的动画配置数据
+    input2InputAnimation: {},//玩家2姓名输入框placeholder的动画配置数据
+    input3InputAnimation: {},//玩家3姓名输入框placeholder的动画配置数据
+    input4InputAnimation: {},//玩家4姓名输入框placeholder的动画配置数据
   },
 
   /**
@@ -79,6 +79,7 @@ Page({
       wx.hideLoading();
     }, 1000);
 
+    //配置输入框的动画
     var animation1 = wx.createAnimation({
       duration: 2000,
       timingFunction: "ease",
