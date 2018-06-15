@@ -1,0 +1,47 @@
+page{
+  background: #FAFAFA;
+}
+.version{
+  position: absolute;
+  bottom: 0.5%;
+  left: 1%;
+  font-size: smaller;
+}
+.questionIcon{
+    width:10%;
+    position: absolute;
+    left:88%;
+    bottom: 2%;
+}
+.cry{
+  margin:300rpx auto;
+  width: 100%;
+  text-align: center;
+}
+.line_text{
+  display: block;
+  font-size: 70rpx;
+  margin-bottom:60rpx;
+}
+
+.indexBtn{
+	/* padding:1%; */
+	position:absolute;
+  background: #049bfb;
+	font-size:40rpx;
+	text-decoration:none;
+	color:#fff;
+	border-radius: 5px;
+  width:40%;
+  height:8%;
+  left:30%;
+  bottom:20%;
+}
+.indexBtn:active{
+  background: #037fda;
+}
+
+
+.mainBG{
+  width:90%;
+}
