@@ -10,7 +10,7 @@
 
 ### 1.首页
 
-![](http://os738issp.bkt.clouddn.com/BigTwoShow_1.jpg)
+![](http://os738issp.bkt.clouddn.com/miniprogram/bigTwo_exp1.jpg)
 
 点击“开始”按钮后，程序先对本地存储进行检查，看是否有历史数据的存在，若无则进入新建牌局的页面，若有则弹出对话框询问用户选择新建牌局或者读取历史数据。
 另外该页面有显示小程序当前版本信息，以及小程序功能介绍信息的显示按钮。
@@ -19,7 +19,7 @@
 
 ### 2.新建牌局页面
 
-![](http://os738issp.bkt.clouddn.com/BigTwoShow_2.jpg)
+![](http://os738issp.bkt.clouddn.com/miniprogram/bigTwo_exp2.jpg)
 
 该页面用于新建牌局时记录每人的姓名信息。填写并点击“确认”后进入功能主页面。
 
@@ -27,11 +27,11 @@
 
 ### 3.功能主页面
 
-![](http://os738issp.bkt.clouddn.com/BigTwoShow_4.jpg)
-![](http://os738issp.bkt.clouddn.com/BigTwoShow_5.jpg)
+![](http://os738issp.bkt.clouddn.com/miniprogram/bigTwo_exp3.jpg)
+![](http://os738issp.bkt.clouddn.com/miniprogram/bigTwo_exp4.jpg)
 
 改页面有三个部分，首先是改局游戏每一轮的详细数据，样式与平时使用纸笔时记录相似。第二个部分为数据统计图表，以比较直观的图表形式展现该局游戏的进展，有柱状图和折线图两种，点击相应按钮可进行切换显示。最下面为相关的功能按钮，游戏正常进行时为“结算新一轮”的按钮，点击后会在下方弹出数字拨盘，用于选择最新一轮中每人的剩余牌数：
-![](http://os738issp.bkt.clouddn.com/BigTwoShow_3.jpg)
+![](http://os738issp.bkt.clouddn.com/miniprogram/bigTwo_exp5.jpg)
 
 当在某一轮记录之后，若有至少一人的累计剩余牌数已经超过100，则下方“结算新一轮”的按钮隐藏，显示“退出”与“新开牌局”的按钮。（该处的“新开牌局”按钮为保持当前玩家姓名不变的情况下新开一局游戏，若需要更新玩家姓名需点击“退出”后在主页中新建牌局）
 
